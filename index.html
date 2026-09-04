@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kyrylo Slyzhuk | AI & Robotics Engineer</title>
+    <title>Kyrylo Slyzhuk | Python Web Developer & AI / Robotics</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono:wght@400;500&display=swap');
 
         :root { --primary: #3b82f6; --bg: #050505; }
         body { background-color: var(--bg); color: #fafafa; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
@@ -21,186 +21,254 @@
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
         }
-        .glass-card:hover { border-color: var(--primary); transform: translateY(-5px); background: rgba(59, 130, 246, 0.05); }
+        .glass-card:hover { border-color: var(--primary); transform: translateY(-4px); background: rgba(59, 130, 246, 0.05); }
 
         .photo-container {
-            position: relative; width: 320px; height: 320px;
+            position: relative; 
+            width: 240px; 
+            height: 240px;
             border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            overflow: hidden; border: 2px solid var(--primary);
+            overflow: hidden; 
+            border: 2px solid var(--primary);
             animation: morph 8s ease-in-out infinite;
-            box-shadow: 0 0 50px rgba(59, 130, 246, 0.2);
+            box-shadow: 0 0 35px rgba(59, 130, 246, 0.25);
+        }
+        @media (min-width: 768px) {
+            .photo-container {
+                width: 320px;
+                height: 320px;
+            }
         }
         @keyframes morph {
             0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
             50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
         }
 
-        .text-gradient { background: linear-gradient(to right, #3b82f6, #a855f7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .text-gradient { 
+            background: linear-gradient(135deg, #3b82f6 0%, #a855f7 100%); 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+        }
 
         #project-modal {
             display: none; position: fixed; inset: 0; z-index: 100;
-            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px);
-            align-items: center; justify-content: center; padding: 20px;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(12px);
+            align-items: center; justify-content: center; padding: 16px;
         }
         .modal-content {
-            background: #0a0a0a; border: 1px solid rgba(255, 255, 255, 0.1);
-            max-width: 800px; width: 100%; border-radius: 2.5rem;
-            position: relative; transform: scale(0.9); opacity: 0; transition: 0.3s;
+            background: #0d0d0d; border: 1px solid rgba(255, 255, 255, 0.12);
+            max-width: 800px; width: 100%; border-radius: 1.75rem;
+            position: relative; transform: scale(0.92); opacity: 0; transition: 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            max-height: 90vh;
+            overflow-y: auto;
         }
-        .tech-badge { background: rgba(59, 130, 246, 0.1); color: #60a5fa; padding: 4px 12px; border-radius: 8px; font-size: 11px; border: 1px solid rgba(59, 130, 246, 0.2); }
+        .tech-badge { 
+            background: rgba(59, 130, 246, 0.1); 
+            color: #60a5fa; 
+            padding: 4px 10px; 
+            border-radius: 6px; 
+            font-size: 11px; 
+            font-family: 'JetBrains Mono', monospace;
+            border: 1px solid rgba(59, 130, 246, 0.2); 
+        }
         
-        .filter-btn.active { background: white; color: black; border-color: white; }
+        .filter-btn.active { background: white; color: black; border-color: white; font-weight: 700; }
+
+        /* Hide scrollbar on mobile buttons */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
     </style>
 </head>
-<body>
+<body class="relative selection:bg-blue-500/30 selection:text-blue-200">
 
     <div id="particles-js"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center backdrop-blur-xl border-b border-white/5">
-        <div class="mono font-bold text-lg tracking-tighter">
+    <nav class="fixed top-0 w-full z-50 px-5 md:px-12 py-4 flex justify-between items-center backdrop-blur-xl border-b border-white/5 bg-black/40">
+        <a href="#about" class="mono font-bold text-base md:text-lg tracking-tighter">
             <span class="text-blue-500">K</span>IRKII<span class="text-purple-500">R</span>UCH
-        </div>
-        <div class="hidden md:flex gap-8 mono text-[11px] uppercase tracking-widest items-center">
-            <a href="#about" class="hover:text-blue-400 transition">About</a>
-            <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
+        </a>
+        <div class="flex gap-4 md:gap-8 mono text-[11px] uppercase tracking-widest items-center">
+            <a href="#about" class="hidden sm:inline-block hover:text-blue-400 transition">About</a>
+            <a href="#experience" class="hidden sm:inline-block hover:text-blue-400 transition">Experience</a>
             <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
-            <a href="https://t.me/kirKiruch" target="_blank" class="bg-blue-500/10 px-4 py-2 rounded-full text-blue-400 border border-blue-500/20 hover:bg-blue-500 hover:text-white transition">Telegram</a>
+            <a href="https://t.me/kirKiruch" target="_blank" class="bg-blue-500/10 px-3.5 py-1.5 md:px-4 md:py-2 rounded-full text-blue-400 border border-blue-500/30 hover:bg-blue-500 hover:text-white transition text-xs font-semibold flex items-center gap-1.5">
+                <i data-lucide="send" class="w-3 h-3"></i> <span>Telegram</span>
+            </a>
         </div>
     </nav>
 
     <!-- Hero -->
-    <section id="about" class="min-h-screen flex items-center px-6 md:px-24 pt-20">
-        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center relative z-10">
-            <div>
-                <div class="mono text-blue-500 mb-6 flex items-center gap-3 text-xs uppercase tracking-widest">
-                    <span class="h-px w-8 bg-blue-500"></span> Python & Robotics Engineer
+    <section id="about" class="min-h-screen flex items-center px-5 sm:px-8 md:px-16 lg:px-24 pt-28 pb-16">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center relative z-10">
+            
+            <!-- Mobile Avatar on Top -->
+            <div class="flex lg:hidden justify-center order-1">
+                <div class="photo-container">
+                    <img src="me.jpg" alt="Kyrylo Slyzhuk" class="w-full h-full object-cover">
                 </div>
-                <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-none">KYRYLO <br><span class="text-gradient">SLYZHUK</span></h1>
-                <p class="text-gray-400 text-lg mono mb-10 leading-relaxed max-w-xl">
-                    Python Web & Backend Developer based in Košice, Slovakia. <br>
-                    Bridging modern web architectures (FastAPI, REST APIs) with Machine Learning, AI integrations, and autonomous robotics systems.
+            </div>
+
+            <div class="lg:col-span-7 order-2">
+                <div class="mono text-blue-400 mb-4 flex items-center gap-2 text-xs uppercase tracking-widest font-medium">
+                    <span class="h-px w-6 bg-blue-500"></span> Python Web & AI / Robotics
+                </div>
+                <h1 class="text-4xl sm:text-6xl lg:text-7xl font-bold mb-5 tracking-tight leading-[1.08]">
+                    KYRYLO <br><span class="text-gradient">SLYZHUK</span>
+                </h1>
+                <p class="text-gray-300 text-sm sm:text-base md:text-lg mono mb-8 leading-relaxed max-w-xl">
+                    Python Web & Backend Developer based in Košice, Slovakia. <br class="hidden sm:inline">
+                    Building resilient web APIs, integrating AI/ML models, and designing software for autonomous robotics systems.
                 </p>
-                <div class="flex gap-4">
-                    <a href="#projects" class="bg-blue-600 px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition">View Works</a>
-                    <a href="https://t.me/kirKiruch" target="_blank" class="border border-white/10 px-8 py-4 rounded-2xl font-bold hover:bg-white/5 transition flex items-center gap-2">
-                        <i data-lucide="send" class="w-4 h-4"></i> Let's Talk
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <a href="#projects" class="bg-blue-600 px-6 py-3.5 rounded-xl font-bold text-center hover:bg-blue-700 transition shadow-lg shadow-blue-500/20 active:scale-95 text-sm md:text-base">
+                        View Projects
+                    </a>
+                    <a href="https://t.me/kirKiruch" target="_blank" class="border border-white/15 px-6 py-3.5 rounded-xl font-bold hover:bg-white/5 transition flex items-center justify-center gap-2 active:scale-95 text-sm md:text-base">
+                        <i data-lucide="message-square" class="w-4 h-4"></i> Get in Touch
                     </a>
                 </div>
             </div>
-            <div class="flex justify-center">
+
+            <!-- Desktop Avatar -->
+            <div class="hidden lg:flex lg:col-span-5 justify-center order-3">
                 <div class="photo-container">
-                    <img src="me.jpg" alt="Kyrylo Slyzhuk" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+                    <img src="me.jpg" alt="Kyrylo Slyzhuk" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Experience & Education -->
-    <section id="experience" class="py-32 px-6 md:px-24">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+    <section id="experience" class="py-20 md:py-32 px-5 sm:px-8 md:px-16 lg:px-24">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20">
             <div>
-                <h2 class="text-3xl font-bold mb-12 flex items-center gap-4"><i data-lucide="briefcase" class="text-blue-500"></i> Experience</h2>
-                <div class="space-y-12 border-l border-white/10 pl-8 ml-2 relative">
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-12 flex items-center gap-3">
+                    <i data-lucide="briefcase" class="text-blue-500 w-6 h-6"></i> Experience
+                </h2>
+                <div class="space-y-10 border-l border-white/10 pl-6 ml-2 relative">
                     <div class="relative">
-                        <div class="absolute -left-[37px] top-0 w-3 h-3 rounded-full bg-blue-500 shadow-[0_0:10px_#3b82f6]"></div>
-                        <h3 class="text-xl font-bold">Software & Network Engineer (R&D)</h3>
-                        <p class="text-blue-500 mono text-xs mb-4 uppercase">TU Košice | 2025 - 2026</p>
-                        <p class="text-gray-400 text-sm">Developed hybrid cross-layer monitoring for mobile robotics. Integrated ROS 2 data with low-level network metrics.</p>
+                        <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_12px_#3b82f6]"></div>
+                        <h3 class="text-lg md:text-xl font-bold">Software & Network Engineer (R&D)</h3>
+                        <p class="text-blue-400 mono text-xs mb-3 uppercase tracking-wider">TU Košice | 2025 - 2026</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">Developed hybrid cross-layer monitoring for mobile robotics. Integrated ROS 2 telemetry with low-level network metrics.</p>
                     </div>
                     <div class="relative">
-                        <div class="absolute -left-[37px] top-0 w-3 h-3 rounded-full bg-gray-600"></div>
-                        <h3 class="text-xl font-bold">Python Developer Intern</h3>
-                        <p class="text-blue-500 mono text-xs mb-4 uppercase">Prosperity Software | 2025</p>
-                        <p class="text-gray-400 text-sm">Backend development using Python/FastAPI and PostgreSQL. API integrations for AI services.</p>
+                        <div class="absolute -left-[31px] top-1.5 w-3 h-3 rounded-full bg-gray-500"></div>
+                        <h3 class="text-lg md:text-xl font-bold">Python Developer Intern</h3>
+                        <p class="text-blue-400 mono text-xs mb-3 uppercase tracking-wider">Prosperity Software | 2025</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">Backend development using Python, FastAPI, and PostgreSQL. Integrated external REST APIs and AI services.</p>
                     </div>
                 </div>
             </div>
             <div>
-                <h2 class="text-3xl font-bold mb-12 flex items-center gap-4"><i data-lucide="graduation-cap" class="text-purple-500"></i> Education</h2>
-                <div class="glass-card p-8 rounded-3xl mb-12">
-                    <h3 class="text-xl font-bold">Bachelor in IT</h3>
-                    <p class="text-purple-400 mono text-sm mb-4">Technical University of Košice | 2022 - 2026</p>
-                    <p class="text-gray-400 text-sm italic">Focusing on AI/ML fundamentals and robotics automation.</p>
+                <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-12 flex items-center gap-3">
+                    <i data-lucide="graduation-cap" class="text-purple-500 w-6 h-6"></i> Education
+                </h2>
+                <div class="glass-card p-6 md:p-8 rounded-2xl md:rounded-3xl">
+                    <h3 class="text-lg md:text-xl font-bold">Bachelor in Intelligent Systems (IT)</h3>
+                    <p class="text-purple-400 mono text-xs md:text-sm mb-3 mt-1">Technical University of Košice | 2022 - 2026</p>
+                    <p class="text-gray-400 text-sm leading-relaxed">Specialized in autonomous robotics, machine learning architectures, and distributed systems.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Certificates -->
-    <section class="py-24 px-6 md:px-24 bg-white/[0.02]">
+    <section class="py-16 md:py-24 px-5 sm:px-8 md:px-16 lg:px-24 bg-white/[0.015] border-y border-white/5">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-3xl font-bold mb-12 flex items-center gap-4"><i data-lucide="award" class="text-yellow-500"></i> Certifications</h2>
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-                <div class="glass-card p-6 rounded-2xl border-l-2 border-blue-500">
-                    <div class="text-[10px] mono text-blue-400 mb-2">CISCO</div>
+            <h2 class="text-2xl md:text-3xl font-bold mb-8 md:mb-12 flex items-center gap-3">
+                <i data-lucide="award" class="text-yellow-500 w-6 h-6"></i> Certifications
+            </h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
+                <div class="glass-card p-5 rounded-xl md:rounded-2xl border-l-2 border-blue-500">
+                    <div class="text-[10px] mono text-blue-400 mb-1">CISCO</div>
                     <h4 class="font-bold text-sm leading-tight uppercase">IoT & Digital Transformation</h4>
                 </div>
-                <div class="glass-card p-6 rounded-2xl border-l-2 border-yellow-500">
-                    <div class="text-[10px] mono text-yellow-500 mb-2">GOOGLE</div>
-                    <h4 class="font-bold text-sm leading-tight uppercase">Professional Certificate "Google AI"</h4>
+                <div class="glass-card p-5 rounded-xl md:rounded-2xl border-l-2 border-yellow-500">
+                    <div class="text-[10px] mono text-yellow-500 mb-1">GOOGLE</div>
+                    <h4 class="font-bold text-sm leading-tight uppercase">Google AI Professional</h4>
                 </div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI for App Deployment</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI for App Building</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI for Brainstorming</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI for Research & Insights</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI for Data Analysis</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI Fundamentals</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
+                <div class="glass-card p-5 rounded-xl md:rounded-2xl">
+                    <h4 class="font-bold text-sm uppercase">AI for App Deployment</h4>
+                    <p class="text-[10px] text-gray-500 mt-1 mono">Google AI Essentials</p>
+                </div>
+                <div class="glass-card p-5 rounded-xl md:rounded-2xl">
+                    <h4 class="font-bold text-sm uppercase">AI for Data Analysis</h4>
+                    <p class="text-[10px] text-gray-500 mt-1 mono">Google AI Essentials</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- Projects Section -->
-    <section id="projects" class="py-32 px-6 md:px-24">
+    <section id="projects" class="py-20 md:py-32 px-5 sm:px-8 md:px-16 lg:px-24">
         <div class="max-w-7xl mx-auto">
-            <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-6">
-                <h2 class="text-5xl font-bold uppercase tracking-tighter">Selected Works</h2>
-                <div class="flex gap-2 mono text-[10px] overflow-x-auto w-full md:w-auto pb-2 no-scrollbar">
-                    <button onclick="filterProjects('all')" class="filter-btn active border border-white/10 px-6 py-2 rounded-full uppercase transition">All</button>
-                    <button onclick="filterProjects('robotics')" class="filter-btn border border-white/10 px-6 py-2 rounded-full uppercase transition">Robotics</button>
-                    <button onclick="filterProjects('ml')" class="filter-btn border border-white/10 px-6 py-2 rounded-full uppercase transition">AI/ML</button>
-                    <button onclick="filterProjects('web')" class="filter-btn border border-white/10 px-6 py-2 rounded-full uppercase transition">Web/API</button>
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end mb-10 md:mb-16 gap-6">
+                <div>
+                    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold uppercase tracking-tight">Selected Works</h2>
+                    <p class="text-gray-400 text-xs md:text-sm mono mt-2">Live sync with GitHub repositories</p>
+                </div>
+                <!-- Responsive Filter Buttons -->
+                <div class="flex gap-2 mono text-[11px] overflow-x-auto w-full md:w-auto pb-2 no-scrollbar">
+                    <button onclick="filterProjects('all')" class="filter-btn active border border-white/15 px-4 py-2 rounded-full uppercase transition whitespace-nowrap">All</button>
+                    <button onclick="filterProjects('web')" class="filter-btn border border-white/15 px-4 py-2 rounded-full uppercase transition whitespace-nowrap">Web / Backend</button>
+                    <button onclick="filterProjects('ml')" class="filter-btn border border-white/15 px-4 py-2 rounded-full uppercase transition whitespace-nowrap">AI / ML</button>
+                    <button onclick="filterProjects('robotics')" class="filter-btn border border-white/15 px-4 py-2 rounded-full uppercase transition whitespace-nowrap">Robotics</button>
                 </div>
             </div>
-            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Projects will be injected here -->
+
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Injected via JavaScript -->
             </div>
         </div>
     </section>
 
-    <footer class="py-20 border-t border-white/5 text-center">
-        <div class="flex justify-center gap-12 mb-10">
-            <a href="https://t.me/kirKiruch" target="_blank" class="text-gray-400 hover:text-white transition font-bold">TELEGRAM</a>
-            <a href="https://www.linkedin.com/in/kyryloslyzhuk/" target="_blank" class="text-gray-400 hover:text-white transition font-bold">LINKEDIN</a>
-            <a href="mailto:kyrylo.slyzhuk@gmail.com" class="text-gray-400 hover:text-white transition font-bold">EMAIL</a>
+    <!-- Footer -->
+    <footer class="py-16 border-t border-white/5 text-center px-5">
+        <div class="flex flex-wrap justify-center gap-8 mb-8">
+            <a href="https://t.me/kirKiruch" target="_blank" class="text-gray-400 hover:text-white transition font-bold text-sm tracking-wider">TELEGRAM</a>
+            <a href="https://www.linkedin.com/in/kyryloslyzhuk/" target="_blank" class="text-gray-400 hover:text-white transition font-bold text-sm tracking-wider">LINKEDIN</a>
+            <a href="mailto:kyrylo.slyzhuk@gmail.com" class="text-gray-400 hover:text-white transition font-bold text-sm tracking-wider">EMAIL</a>
         </div>
-        <p class="mono text-[10px] text-gray-600 uppercase">© 2024 Kyrylo Slyzhuk</p>
+        <p class="mono text-[11px] text-gray-500 uppercase">© 2026 Kyrylo Slyzhuk • Crafted with Tailwind & GSAP</p>
     </footer>
 
-    <!-- Modal -->
+    <!-- Mobile-Optimized Modal -->
     <div id="project-modal" onclick="if(event.target === this) closeModal()">
-        <div class="modal-content p-8 md:p-12">
-            <button onclick="closeModal()" class="absolute top-8 right-8 text-gray-500 hover:text-white"><i data-lucide="x"></i></button>
+        <div class="modal-content p-6 sm:p-8 md:p-12 relative shadow-2xl">
+            <button onclick="closeModal()" class="absolute top-5 right-5 text-gray-400 hover:text-white p-2 rounded-full bg-white/5 active:scale-95 transition" aria-label="Close modal">
+                <i data-lucide="x" class="w-5 h-5"></i>
+            </button>
             <div id="modal-body"></div>
         </div>
     </div>
 
     <script>
-        particlesJS("particles-js", { "particles": { "number": { "value": 30 }, "color": { "value": "#3b82f6" }, "opacity": { "value": 0.1 }, "size": { "value": 2 }, "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.1 } } });
+        // Particles setup (reduced on mobile for buttery smooth 60fps)
+        const isMobile = window.innerWidth < 768;
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": isMobile ? 16 : 32 },
+                "color": { "value": "#3b82f6" },
+                "opacity": { "value": 0.15 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 140, "color": "#3b82f6", "opacity": 0.1 }
+            }
+        });
         
         const repoStore = {};
         const mapping = {
             robotics: ['ros', 'robot', 'webots', 'bug2', 'navigation', 'control', 'monitoring'],
             ml: ['cnn', 'xgboost', 'classification', 'ai', 'ml', 'intelligence', 'data', 'detection'],
-            web: ['api', 'fastapi', 'flask', 'backend', 'frontend', 'web', 'http', 'hotel', 'tiktok']
+            web: ['api', 'fastapi', 'flask', 'backend', 'frontend', 'web', 'http', 'hotel', 'tiktok', 'sourcing']
         };
 
         async function loadRepos() {
             try {
-                // Fetch up to 50 repos to make sure we show everything
                 const res = await fetch(`https://api.github.com/users/kirkiiruch/repos?sort=updated&per_page=50`);
                 const repos = await res.json();
                 const grid = document.getElementById('project-grid');
@@ -210,7 +278,6 @@
                     if (repo.fork) return;
                     repoStore[repo.id] = repo;
 
-                    // Determine categories
                     let categories = ['all'];
                     const fullText = (repo.name + ' ' + (repo.description || '')).toLowerCase();
                     for (const [cat, keywords] of Object.entries(mapping)) {
@@ -218,41 +285,52 @@
                     }
 
                     const card = document.createElement('div');
-                    card.className = `glass-card p-8 rounded-[2.5rem] cursor-pointer group project-item ${categories.join(' ')}`;
+                    card.className = `glass-card p-6 md:p-8 rounded-2xl md:rounded-[2rem] cursor-pointer group project-item ${categories.join(' ')}`;
                     card.onclick = () => openModal(repo.id);
                     card.innerHTML = `
-                        <div class="flex justify-between mb-8">
-                            <div class="bg-blue-500/10 p-3 rounded-2xl text-blue-500"><i data-lucide="folder"></i></div>
-                            <i data-lucide="arrow-up-right" class="text-gray-700 group-hover:text-white transition"></i>
+                        <div class="flex justify-between items-start mb-6">
+                            <div class="bg-blue-500/10 p-2.5 rounded-xl text-blue-400">
+                                <i data-lucide="folder-git-2" class="w-5 h-5"></i>
+                            </div>
+                            <div class="text-gray-500 group-hover:text-blue-400 transition transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5">
+                                <i data-lucide="arrow-up-right" class="w-5 h-5"></i>
+                            </div>
                         </div>
-                        <h4 class="text-xl font-bold mb-3 mono text-white uppercase tracking-tighter">${repo.name.replace(/-/g, ' ')}</h4>
-                        <p class="text-gray-500 text-xs line-clamp-2 mb-6">${repo.description || 'System architecture and logic implementation.'}</p>
-                        <div class="flex gap-2 flex-wrap">
+                        <h4 class="text-lg md:text-xl font-bold mb-2 mono text-white uppercase tracking-tight">${repo.name.replace(/[-_]/g, ' ')}</h4>
+                        <p class="text-gray-400 text-xs md:text-sm line-clamp-2 mb-6 leading-relaxed">${repo.description || 'System architecture, data pipeline, and logic implementation.'}</p>
+                        <div class="flex gap-2 flex-wrap items-center">
                             <span class="tech-badge">${repo.language || 'Python'}</span>
+                            <span class="text-[11px] mono text-gray-500 flex items-center gap-1 ml-auto">
+                                <i data-lucide="star" class="w-3 h-3"></i> ${repo.stargazers_count}
+                            </span>
                         </div>
                     `;
                     grid.appendChild(card);
                 });
                 lucide.createIcons();
-            } catch (e) { console.error("Error loading repos:", e); }
+            } catch (e) { 
+                console.error("Error loading repos:", e); 
+            }
         }
 
         function filterProjects(cat) {
-            // UI Toggle
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.classList.remove('active');
-                if(btn.textContent.toLowerCase() === cat || (cat === 'all' && btn.textContent.toLowerCase() === 'all')) {
+                const text = btn.textContent.toLowerCase();
+                if ((cat === 'all' && text === 'all') ||
+                    (cat === 'web' && text.includes('web')) ||
+                    (cat === 'ml' && text.includes('ai')) ||
+                    (cat === 'robotics' && text.includes('robotics'))) {
                     btn.classList.add('active');
                 }
             });
 
-            // Filtering Animation
             const items = document.querySelectorAll('.project-item');
-            gsap.to(items, { opacity: 0, scale: 0.9, duration: 0.2, onComplete: () => {
+            gsap.to(items, { opacity: 0, scale: 0.95, duration: 0.15, onComplete: () => {
                 items.forEach(item => {
                     if (item.classList.contains(cat)) {
                         item.style.display = 'block';
-                        gsap.to(item, { opacity: 1, scale: 1, duration: 0.4 });
+                        gsap.to(item, { opacity: 1, scale: 1, duration: 0.3 });
                     } else {
                         item.style.display = 'none';
                     }
@@ -266,34 +344,32 @@
             const body = document.getElementById('modal-body');
             
             body.innerHTML = `
-                <div class="mono text-blue-500 text-xs mb-4 uppercase tracking-[0.3em]">Technical Deep Dive</div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white uppercase tracking-tighter">${repo.name.replace(/-/g, ' ')}</h2>
+                <div class="mono text-blue-400 text-xs mb-2 uppercase tracking-[0.2em]">Project Details</div>
+                <h2 class="text-2xl sm:text-3xl md:text-4xl font-bold mb-6 text-white uppercase tracking-tight">${repo.name.replace(/[-_]/g, ' ')}</h2>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-10">
+                <div class="space-y-6 mb-8">
                     <div>
-                        <h4 class="text-[10px] mono text-gray-500 uppercase mb-4 tracking-widest">About the project</h4>
-                        <p class="text-gray-300 leading-relaxed text-lg">
-                            ${repo.description || 'This implementation focuses on high-efficiency algorithms and clean system architecture. It demonstrates proficiency in modular design and robust error handling within its specific domain.'}
+                        <h4 class="text-[10px] mono text-gray-500 uppercase mb-2 tracking-widest">Overview</h4>
+                        <p class="text-gray-300 leading-relaxed text-sm md:text-base">
+                            ${repo.description || 'This implementation focuses on high-efficiency algorithms, clean API structure, and maintainable design patterns.'}
                         </p>
                     </div>
                     <div>
-                        <h4 class="text-[10px] mono text-gray-500 uppercase mb-4 tracking-widest">Technologies & Stats</h4>
-                        <div class="flex flex-wrap gap-2 mb-8">
+                        <h4 class="text-[10px] mono text-gray-500 uppercase mb-2 tracking-widest">Tech & Topics</h4>
+                        <div class="flex flex-wrap gap-1.5 mb-6">
                             <span class="tech-badge">${repo.language || 'Python'}</span>
-                            <span class="tech-badge">GitHub API</span>
-                            <span class="tech-badge">DevOps</span>
                             ${repo.topics ? repo.topics.map(t => `<span class="tech-badge">${t}</span>`).join('') : ''}
                         </div>
-                        <div class="flex gap-10 border-t border-white/5 pt-8">
-                            <div><div class="text-3xl font-bold text-white">${repo.stargazers_count}</div><div class="text-[10px] mono text-gray-600 tracking-widest">STARS</div></div>
-                            <div><div class="text-3xl font-bold text-white">${repo.forks_count}</div><div class="text-[10px] mono text-gray-600 tracking-widest">FORKS</div></div>
+                        <div class="flex gap-8 border-t border-white/10 pt-4">
+                            <div><div class="text-2xl font-bold text-white">${repo.stargazers_count}</div><div class="text-[10px] mono text-gray-500 tracking-widest">STARS</div></div>
+                            <div><div class="text-2xl font-bold text-white">${repo.forks_count}</div><div class="text-[10px] mono text-gray-500 tracking-widest">FORKS</div></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-8 border-t border-white/5">
-                    <a href="${repo.html_url}" target="_blank" class="bg-white text-black px-12 py-5 rounded-2xl font-black inline-flex items-center gap-3 hover:bg-blue-600 hover:text-white transition duration-500">
-                        <i data-lucide="github"></i> VIEW ON GITHUB
+                <div class="pt-4 border-t border-white/10 flex flex-col sm:flex-row gap-3">
+                    <a href="${repo.html_url}" target="_blank" class="bg-white text-black px-8 py-3.5 rounded-xl font-bold inline-flex items-center justify-center gap-2 hover:bg-blue-600 hover:text-white transition active:scale-95 text-sm md:text-base">
+                        <i data-lucide="github" class="w-4 h-4"></i> View on GitHub
                     </a>
                 </div>
             `;
@@ -309,8 +385,8 @@
         function closeModal() {
             const modal = document.getElementById('project-modal');
             modal.querySelector('.modal-content').style.opacity = '0';
-            modal.querySelector('.modal-content').style.transform = 'scale(0.9)';
-            setTimeout(() => modal.style.display = 'none', 300);
+            modal.querySelector('.modal-content').style.transform = 'scale(0.92)';
+            setTimeout(() => modal.style.display = 'none', 250);
         }
 
         window.onload = loadRepos;
