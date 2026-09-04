@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Kyrylo Slyzhuk | Robotics & AI Engineer</title>
+    <title>Kyrylo Slyzhuk | AI & Robotics Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
@@ -35,16 +35,15 @@
         }
 
         .glass-card {
-            background: rgba(15, 15, 15, 0.7);
+            background: rgba(255, 255, 255, 0.02);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s ease;
         }
 
         .glass-card:hover {
             border-color: var(--primary);
-            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
-            transform: translateY(-10px) scale(1.02);
+            background: rgba(59, 130, 246, 0.05);
         }
 
         .text-gradient {
@@ -53,190 +52,257 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .nav-link {
+        .photo-container {
             position: relative;
+            width: 300px;
+            height: 300px;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
             overflow: hidden;
+            border: 2px solid var(--primary);
+            animation: morph 8s ease-in-out infinite;
         }
 
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            bottom: 0; left: 0; width: 0; height: 1px;
-            background: var(--primary);
-            transition: width 0.3s;
+        @keyframes morph {
+            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
         }
-
-        .nav-link:hover::after { width: 100%; }
 
         .loader {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: #000;
-            z-index: 100;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: #000; z-index: 100; display: flex; justify-content: center; align-items: center;
+        }
+
+        .exp-line {
+            position: absolute; left: 20px; top: 0; bottom: 0; width: 1px;
+            background: linear-gradient(to bottom, transparent, var(--primary), transparent);
         }
     </style>
 </head>
 <body>
 
     <div class="loader" id="loader">
-        <div class="mono text-blue-500 animate-pulse text-xl">System.init();</div>
+        <div class="mono text-blue-500 animate-pulse">Initializing_Portfolio_v2.0...</div>
     </div>
 
     <div id="particles-js"></div>
 
-    <!-- Header -->
-    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-sm border-b border-white/5">
-        <div class="mono font-bold text-lg tracking-widest">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center backdrop-blur-md border-b border-white/5">
+        <div class="mono font-bold text-lg">
             <span class="text-blue-500 font-black">K</span>IRKII<span class="text-purple-500 font-black">R</span>UCH
         </div>
-        <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-[0.2em]">
-            <a href="#about" class="nav-link">About</a>
-            <a href="#projects" class="nav-link">Architecture</a>
-            <a href="#contact" class="nav-link">Connect</a>
+        <div class="hidden md:flex gap-10 mono text-[10px] uppercase tracking-widest">
+            <a href="#about" class="hover:text-blue-400 transition">About</a>
+            <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
+            <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
+            <a href="https://www.linkedin.com/in/kyryloslyzhuk/" target="_blank" class="text-blue-500">LinkedIn</a>
         </div>
     </nav>
 
-    <!-- Hero -->
-    <section class="relative min-h-screen flex items-center px-6 md:px-24">
-        <div class="z-10 max-w-5xl">
-            <div class="mono text-blue-500 mb-6 flex items-center gap-3">
-                <span class="h-px w-8 bg-blue-500"></span> 
-                <span>Based in Europe / Python Engineer</span>
+    <!-- Hero Section -->
+    <section id="about" class="min-h-screen flex items-center px-6 md:px-24 pt-20">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full">
+            <div>
+                <div class="mono text-blue-500 mb-6 flex items-center gap-3">
+                    <span class="h-px w-8 bg-blue-500"></span> 
+                    <span>Junior Web Developer | AI & Robotics</span>
+                </div>
+                <h1 class="text-6xl md:text-8xl font-bold mb-6">KYRYLO <br><span class="text-gradient">SLYZHUK</span></h1>
+                <p class="text-gray-400 text-lg mono mb-8 leading-relaxed max-w-xl">
+                    Python Developer based in Košice, Slovakia. <br>
+                    Focusing on ROS 2, autonomous systems, and scalable backend architectures.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#projects" class="bg-blue-600 px-8 py-3 rounded-full font-bold hover:bg-blue-700 transition">View Projects</a>
+                    <a href="https://github.com/kirkiiruch" target="_blank" class="border border-white/10 px-8 py-3 rounded-full font-bold hover:bg-white/5 transition">GitHub</a>
+                </div>
             </div>
-            <h1 class="text-7xl md:text-[120px] font-bold leading-[0.9] mb-8">
-                ROBOTICS <br>
-                <span class="text-gradient">& INTELLIGENCE</span>
-            </h1>
-            <p class="text-gray-400 text-lg md:text-xl max-w-xl mono leading-relaxed">
-                Developing autonomous systems and machine learning models. 
-                Focusing on Python, Webots, and Deep Learning.
-            </p>
+            <div class="flex justify-center">
+                <div class="photo-container">
+                    <img src="me.jpg" alt="Kyrylo Slyzhuk" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-700">
+                </div>
+            </div>
         </div>
     </section>
 
-    <!-- Projects -->
+    <!-- Experience & Education -->
+    <section id="experience" class="py-32 px-6 md:px-24 bg-white/[0.01]">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <!-- Experience -->
+            <div>
+                <h2 class="text-4xl font-bold mb-12 flex items-center gap-4">
+                    <i data-lucide="briefcase" class="text-blue-500"></i> Experience
+                </h2>
+                <div class="relative pl-12 space-y-12">
+                    <div class="exp-line"></div>
+                    
+                    <div class="relative">
+                        <div class="absolute -left-[37px] top-0 w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+                        <h3 class="text-xl font-bold">Software & Network Engineer (R&D)</h3>
+                        <p class="text-blue-500 mono text-sm mb-4">TU Košice | Sep 2025 - Jun 2026</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Developed a hybrid cross-layer monitoring system for mobile robotics. 
+                            Synchronized ROS 2 application data with low-level network metrics (ICMP RTT, jitter).
+                        </p>
+                    </div>
+
+                    <div class="relative">
+                        <div class="absolute -left-[37px] top-0 w-3 h-3 rounded-full bg-gray-700"></div>
+                        <h3 class="text-xl font-bold">Python Developer Intern</h3>
+                        <p class="text-blue-500 mono text-sm mb-4">Prosperity Software | Feb 2025 - Jul 2025</p>
+                        <p class="text-gray-400 text-sm leading-relaxed">
+                            Backend development with Python, building and integrating REST APIs with PostgreSQL. 
+                            Implemented AI functionality through third-party APIs.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Education & Certs -->
+            <div>
+                <h2 class="text-4xl font-bold mb-12 flex items-center gap-4">
+                    <i data-lucide="graduation-cap" class="text-purple-500"></i> Education
+                </h2>
+                <div class="glass-card p-8 rounded-3xl mb-8">
+                    <h3 class="text-xl font-bold">Bachelor in IT</h3>
+                    <p class="text-purple-400 mono text-sm mb-4">Technical University of Košice | 2022 - 2026</p>
+                    <p class="text-gray-400 text-sm italic">Focusing on AI/ML fundamentals, software development, and automation algorithms.</p>
+                </div>
+
+                <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
+                    <i data-lucide="award" class="text-yellow-500 w-5"></i> Certifications
+                </h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <div class="glass-card p-4 rounded-xl text-xs mono border-l-2 border-yellow-500">
+                        Professional Certificate <br> "Google AI"
+                    </div>
+                    <div class="glass-card p-4 rounded-xl text-xs mono border-l-2 border-blue-500">
+                        Cisco IoT & <br> Digital Transformation
+                    </div>
+                    <div class="glass-card p-4 rounded-xl text-xs mono">AI for App Building (Google)</div>
+                    <div class="glass-card p-4 rounded-xl text-xs mono">Data Analysis (Google)</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Repositories -->
     <section id="projects" class="py-32 px-6 md:px-24 relative z-10">
         <div class="flex flex-col md:flex-row justify-between items-baseline mb-20">
-            <h2 class="text-5xl font-bold">REPOSITORIES</h2>
-            <div class="flex gap-4 mt-6 md:mt-0 overflow-x-auto pb-4">
-                <button onclick="filterProjects('all')" class="mono text-xs border border-white/10 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">ALL_SYSTEMS</button>
-                <button onclick="filterProjects('robotics')" class="mono text-xs border border-white/10 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">ROBOTICS</button>
-                <button onclick="filterProjects('ml')" class="mono text-xs border border-white/10 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">AI/ML</button>
+            <div>
+                <h2 class="text-5xl font-bold mb-4">PROJECTS</h2>
+                <p class="text-gray-500 mono text-sm uppercase">Fetched from GitHub API</p>
+            </div>
+            <div class="flex gap-4 mt-6 md:mt-0 overflow-x-auto pb-4 w-full md:w-auto">
+                <button onclick="filterProjects('all')" class="mono text-[10px] border border-white/10 px-4 py-2 rounded-full hover:bg-white hover:text-black transition active-filter">ALL</button>
+                <button onclick="filterProjects('robotics')" class="mono text-[10px] border border-white/10 px-4 py-2 rounded-full hover:bg-white hover:text-black transition">ROBOTICS</button>
+                <button onclick="filterProjects('ml')" class="mono text-[10px] border border-white/10 px-4 py-2 rounded-full hover:bg-white hover:text-black transition">AI/ML</button>
+                <button onclick="filterProjects('web')" class="mono text-[10px] border border-white/10 px-4 py-2 rounded-full hover:bg-white hover:text-black transition">WEB/API</button>
             </div>
         </div>
 
-        <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <!-- Projects injected by JS -->
+        <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Dynamic projects -->
         </div>
     </section>
 
-    <!-- Footer / Contact -->
-    <section id="contact" class="py-32 px-6 text-center border-t border-white/5 bg-black/40">
-        <h3 class="text-gray-500 mono mb-4">// Ready for collaboration</h3>
-        <a href="mailto:your-email@example.com" class="text-5xl md:text-7xl font-bold hover:text-blue-500 transition duration-500">
-            START_PROJECT
-        </a>
-        <div class="flex justify-center gap-10 mt-20 mono text-sm text-gray-600">
-            <a href="https://github.com/kirkiiruch" class="hover:text-white">GITHUB</a>
-            <a href="#" class="hover:text-white">LINKEDIN</a>
-            <a href="#" class="hover:text-white">TELEGRAM</a>
+    <!-- Footer -->
+    <footer id="contact" class="py-32 px-6 text-center border-t border-white/5 bg-black/50">
+        <h3 class="text-gray-500 mono mb-8">// Open for new challenges</h3>
+        <div class="flex flex-wrap justify-center gap-12 mb-20">
+            <a href="mailto:kyrylo.slyzhuk@gmail.com" class="text-3xl md:text-5xl font-bold hover:text-blue-500 transition underline decoration-1 underline-offset-8">EMAIL</a>
+            <a href="https://www.linkedin.com/in/kyryloslyzhuk/" target="_blank" class="text-3xl md:text-5xl font-bold hover:text-blue-500 transition underline decoration-1 underline-offset-8">LINKEDIN</a>
         </div>
-    </section>
+        <p class="mono text-xs text-gray-700">© 2024 Kyrylo Slyzhuk. Built with GSAP & Lucide.</p>
+    </footer>
 
     <script>
-        // Particles.js Config
+        // Particles.js
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 50, "density": { "enable": true, "value_area": 800 } },
                 "color": { "value": "#3b82f6" },
                 "shape": { "type": "circle" },
-                "opacity": { "value": 0.2 },
-                "size": { "value": 2 },
+                "opacity": { "value": 0.15 },
+                "size": { "value": 1 },
                 "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.1, "width": 1 },
-                "move": { "enable": true, "speed": 1, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+                "move": { "enable": true, "speed": 1, "out_mode": "out" }
             },
-            "interactivity": {
-                "detect_on": "canvas",
-                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } },
-                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } }
-            }
+            "interactivity": { "events": { "onhover": { "enable": true, "mode": "grab" } } }
         });
 
-        // GSAP Animations
-        window.addEventListener('load', () => {
-            gsap.to("#loader", { opacity: 0, duration: 1, delay: 0.5, onComplete: () => {
-                document.getElementById('loader').style.display = 'none';
-            }});
-            
-            gsap.from("h1", { y: 100, opacity: 0, duration: 1.5, delay: 1, ease: "power4.out" });
-        });
-
-        // GitHub Logic
-        const username = 'kirkiiruch';
-        const projectGrid = document.getElementById('project-grid');
-
+        // GitHub Loader
         const tags = {
-            'Webots-Simulation': 'robotics',
-            'Image-Classification': 'ml',
-            'CNN': 'ml',
-            'XGBoost': 'ml',
-            'Bug2': 'robotics',
-            'Docker': 'backend'
+            'webots': 'robotics',
+            'bug2': 'robotics',
+            'monitoring': 'robotics',
+            'cnn': 'ml',
+            'xgboost': 'ml',
+            'classification': 'ml',
+            'hotel': 'web',
+            'networking': 'web',
+            'tiktok': 'web'
         };
 
         async function loadRepos() {
             try {
-                const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
+                const res = await fetch(`https://api.github.com/users/kirkiiruch/repos?sort=updated&per_page=50`);
                 const repos = await res.json();
                 
-                projectGrid.innerHTML = '';
+                const grid = document.getElementById('project-grid');
+                grid.innerHTML = '';
+
                 repos.forEach(repo => {
                     if (repo.fork) return;
                     
                     let category = 'all';
                     for (let key in tags) {
-                        if (repo.name.includes(key)) category += ` ${tags[key]}`;
+                        if (repo.name.toLowerCase().includes(key)) category += ` ${tags[key]}`;
                     }
 
                     const card = document.createElement('div');
-                    card.className = `glass-card p-10 rounded-3xl flex flex-col justify-between h-[350px] ${category}`;
+                    card.className = `glass-card p-8 rounded-3xl flex flex-col justify-between h-[300px] ${category}`;
                     card.innerHTML = `
                         <div>
-                            <div class="flex justify-between mb-8">
-                                <i data-lucide="cpu" class="text-blue-500"></i>
-                                <a href="${repo.html_url}" target="_blank" class="text-gray-500 hover:text-white"><i data-lucide="external-link"></i></a>
+                            <div class="flex justify-between mb-6">
+                                <i data-lucide="folder" class="text-blue-500 w-5"></i>
+                                <a href="${repo.html_url}" target="_blank" class="text-gray-500 hover:text-white"><i data-lucide="github" class="w-5"></i></a>
                             </div>
-                            <h4 class="text-2xl font-bold mb-4 tracking-tight">${repo.name.replace(/-/g, ' ')}</h4>
-                            <p class="text-gray-500 mono text-sm line-clamp-3">${repo.description || 'System architecture and engineering implementation.'}</p>
+                            <h4 class="text-lg font-bold mb-3 mono tracking-tight text-blue-100">${repo.name.replace(/-/g, '_')}</h4>
+                            <p class="text-gray-500 text-xs leading-relaxed line-clamp-3">${repo.description || 'Professional system implementation.'}</p>
                         </div>
                         <div class="flex justify-between items-center mt-6">
-                            <span class="text-[10px] mono bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">${repo.language || 'Python'}</span>
-                            <span class="text-[10px] mono text-gray-600 italic">v1.0.stable</span>
+                            <span class="text-[9px] mono bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">${repo.language || 'Python'}</span>
+                            <div class="flex gap-3 text-gray-600">
+                                <span class="text-[10px] flex items-center gap-1"><i data-lucide="star" class="w-3"></i> ${repo.stargazers_count}</span>
+                            </div>
                         </div>
                     `;
-                    projectGrid.appendChild(card);
+                    grid.appendChild(card);
                 });
                 lucide.createIcons();
-            } catch (e) {
-                console.error("Failed to load repos");
-            }
+            } catch (e) { console.error(e); }
         }
 
         function filterProjects(cat) {
-            const cards = document.querySelectorAll('.glass-card');
-            cards.forEach(card => {
-                if (cat === 'all' || card.classList.contains(cat)) {
-                    gsap.to(card, { opacity: 1, scale: 1, duration: 0.5, display: 'flex' });
-                } else {
-                    gsap.to(card, { opacity: 0, scale: 0.9, duration: 0.5, display: 'none' });
-                }
-            });
+            gsap.to(".glass-card", { opacity: 0, scale: 0.9, duration: 0.2, onComplete: () => {
+                document.querySelectorAll('.glass-card').forEach(card => {
+                    if (cat === 'all' || card.classList.contains(cat)) {
+                        card.style.display = 'flex';
+                        gsap.to(card, { opacity: 1, scale: 1, duration: 0.4 });
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            }});
         }
 
-        loadRepos();
+        window.addEventListener('load', () => {
+            gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => {
+                document.getElementById('loader').style.display = 'none';
+            }});
+            loadRepos();
+        });
     </script>
 </body>
 </html>
