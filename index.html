@@ -51,6 +51,8 @@
             position: relative; transform: scale(0.9); opacity: 0; transition: 0.3s;
         }
         .tech-badge { background: rgba(59, 130, 246, 0.1); color: #60a5fa; padding: 4px 12px; border-radius: 8px; font-size: 11px; border: 1px solid rgba(59, 130, 246, 0.2); }
+        
+        .filter-btn.active { background: white; color: black; border-color: white; }
     </style>
 </head>
 <body>
@@ -100,12 +102,11 @@
     <!-- Experience & Education -->
     <section id="experience" class="py-32 px-6 md:px-24">
         <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
-            <!-- Work -->
             <div>
                 <h2 class="text-3xl font-bold mb-12 flex items-center gap-4"><i data-lucide="briefcase" class="text-blue-500"></i> Experience</h2>
                 <div class="space-y-12 border-l border-white/10 pl-8 ml-2 relative">
                     <div class="relative">
-                        <div class="absolute -left-[37px] top-0 w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]"></div>
+                        <div class="absolute -left-[37px] top-0 w-3 h-3 rounded-full bg-blue-500 shadow-[0_0:10px_#3b82f6]"></div>
                         <h3 class="text-xl font-bold">Software & Network Engineer (R&D)</h3>
                         <p class="text-blue-500 mono text-xs mb-4 uppercase">TU Košice | 2025 - 2026</p>
                         <p class="text-gray-400 text-sm">Developed hybrid cross-layer monitoring for mobile robotics. Integrated ROS 2 data with low-level network metrics.</p>
@@ -118,7 +119,6 @@
                     </div>
                 </div>
             </div>
-            <!-- Edu -->
             <div>
                 <h2 class="text-3xl font-bold mb-12 flex items-center gap-4"><i data-lucide="graduation-cap" class="text-purple-500"></i> Education</h2>
                 <div class="glass-card p-8 rounded-3xl mb-12">
@@ -130,39 +130,47 @@
         </div>
     </section>
 
-    <!-- Full Certificates Section -->
+    <!-- Certificates -->
     <section class="py-24 px-6 md:px-24 bg-white/[0.02]">
         <div class="max-w-7xl mx-auto">
             <h2 class="text-3xl font-bold mb-12 flex items-center gap-4"><i data-lucide="award" class="text-yellow-500"></i> Certifications</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
                 <div class="glass-card p-6 rounded-2xl border-l-2 border-blue-500">
                     <div class="text-[10px] mono text-blue-400 mb-2">CISCO</div>
-                    <h4 class="font-bold text-sm leading-tight">IoT & Digital Transformation</h4>
+                    <h4 class="font-bold text-sm leading-tight uppercase">IoT & Digital Transformation</h4>
                 </div>
                 <div class="glass-card p-6 rounded-2xl border-l-2 border-yellow-500">
                     <div class="text-[10px] mono text-yellow-500 mb-2">GOOGLE</div>
-                    <h4 class="font-bold text-sm leading-tight">Professional Certificate "Google AI"</h4>
+                    <h4 class="font-bold text-sm leading-tight uppercase">Professional Certificate "Google AI"</h4>
                 </div>
-                <!-- All Google Modules -->
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm">AI for App Deployment</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm">AI for App Building</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm">AI for Brainstorming</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm">AI for Research & Insights</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm">AI for Data Analysis</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
-                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm">AI Fundamentals</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
+                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI for App Deployment</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
+                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI for App Building</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
+                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI for Brainstorming</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
+                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI for Research & Insights</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
+                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI for Data Analysis</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
+                <div class="glass-card p-6 rounded-2xl"><h4 class="font-bold text-sm uppercase">AI Fundamentals</h4><p class="text-[10px] text-gray-500 mt-2">Google AI Essentials</p></div>
             </div>
         </div>
     </section>
 
-    <!-- Projects -->
+    <!-- Projects Section -->
     <section id="projects" class="py-32 px-6 md:px-24">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-5xl font-bold mb-16">SELECTED WORKS</h2>
-            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            <div class="flex flex-col md:flex-row justify-between items-baseline mb-16 gap-6">
+                <h2 class="text-5xl font-bold uppercase tracking-tighter">Selected Works</h2>
+                <div class="flex gap-2 mono text-[10px] overflow-x-auto w-full md:w-auto pb-2 no-scrollbar">
+                    <button onclick="filterProjects('all')" class="filter-btn active border border-white/10 px-6 py-2 rounded-full uppercase transition">All</button>
+                    <button onclick="filterProjects('robotics')" class="filter-btn border border-white/10 px-6 py-2 rounded-full uppercase transition">Robotics</button>
+                    <button onclick="filterProjects('ml')" class="filter-btn border border-white/10 px-6 py-2 rounded-full uppercase transition">AI/ML</button>
+                    <button onclick="filterProjects('web')" class="filter-btn border border-white/10 px-6 py-2 rounded-full uppercase transition">Web/API</button>
+                </div>
+            </div>
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Projects will be injected here -->
+            </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <footer class="py-20 border-t border-white/5 text-center">
         <div class="flex justify-center gap-12 mb-10">
             <a href="https://t.me/kirKiruch" target="_blank" class="text-gray-400 hover:text-white transition font-bold">TELEGRAM</a>
@@ -184,30 +192,72 @@
         particlesJS("particles-js", { "particles": { "number": { "value": 30 }, "color": { "value": "#3b82f6" }, "opacity": { "value": 0.1 }, "size": { "value": 2 }, "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.1 } } });
         
         const repoStore = {};
+        const mapping = {
+            robotics: ['ros', 'robot', 'webots', 'bug2', 'navigation', 'control', 'monitoring'],
+            ml: ['cnn', 'xgboost', 'classification', 'ai', 'ml', 'intelligence', 'data', 'detection'],
+            web: ['api', 'fastapi', 'flask', 'backend', 'frontend', 'web', 'http', 'hotel', 'tiktok']
+        };
 
         async function loadRepos() {
-            const res = await fetch(`https://api.github.com/users/kirkiiruch/repos?sort=updated&per_page=12`);
-            const repos = await res.json();
-            const grid = document.getElementById('project-grid');
-            
-            repos.forEach(repo => {
-                if (repo.fork) return;
-                repoStore[repo.id] = repo;
-                const card = document.createElement('div');
-                card.className = 'glass-card p-8 rounded-[2.5rem] cursor-pointer group';
-                card.onclick = () => openModal(repo.id);
-                card.innerHTML = `
-                    <div class="flex justify-between mb-8">
-                        <div class="bg-blue-500/10 p-3 rounded-2xl text-blue-500"><i data-lucide="folder"></i></div>
-                        <i data-lucide="arrow-up-right" class="text-gray-700 group-hover:text-white transition"></i>
-                    </div>
-                    <h4 class="text-xl font-bold mb-3 mono text-white uppercase tracking-tighter">${repo.name.replace(/-/g, ' ')}</h4>
-                    <p class="text-gray-500 text-xs line-clamp-2 mb-6">${repo.description || 'Advanced system implementation and architecture.'}</p>
-                    <div class="flex gap-2 flex-wrap">${(repo.language ? `<span class="tech-badge">${repo.language}</span>` : '')}</div>
-                `;
-                grid.appendChild(card);
+            try {
+                // Fetch up to 50 repos to make sure we show everything
+                const res = await fetch(`https://api.github.com/users/kirkiiruch/repos?sort=updated&per_page=50`);
+                const repos = await res.json();
+                const grid = document.getElementById('project-grid');
+                grid.innerHTML = '';
+                
+                repos.forEach(repo => {
+                    if (repo.fork) return;
+                    repoStore[repo.id] = repo;
+
+                    // Determine categories
+                    let categories = ['all'];
+                    const fullText = (repo.name + ' ' + (repo.description || '')).toLowerCase();
+                    for (const [cat, keywords] of Object.entries(mapping)) {
+                        if (keywords.some(k => fullText.includes(k))) categories.push(cat);
+                    }
+
+                    const card = document.createElement('div');
+                    card.className = `glass-card p-8 rounded-[2.5rem] cursor-pointer group project-item ${categories.join(' ')}`;
+                    card.onclick = () => openModal(repo.id);
+                    card.innerHTML = `
+                        <div class="flex justify-between mb-8">
+                            <div class="bg-blue-500/10 p-3 rounded-2xl text-blue-500"><i data-lucide="folder"></i></div>
+                            <i data-lucide="arrow-up-right" class="text-gray-700 group-hover:text-white transition"></i>
+                        </div>
+                        <h4 class="text-xl font-bold mb-3 mono text-white uppercase tracking-tighter">${repo.name.replace(/-/g, ' ')}</h4>
+                        <p class="text-gray-500 text-xs line-clamp-2 mb-6">${repo.description || 'System architecture and logic implementation.'}</p>
+                        <div class="flex gap-2 flex-wrap">
+                            <span class="tech-badge">${repo.language || 'Python'}</span>
+                        </div>
+                    `;
+                    grid.appendChild(card);
+                });
+                lucide.createIcons();
+            } catch (e) { console.error("Error loading repos:", e); }
+        }
+
+        function filterProjects(cat) {
+            // UI Toggle
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if(btn.textContent.toLowerCase() === cat || (cat === 'all' && btn.textContent.toLowerCase() === 'all')) {
+                    btn.classList.add('active');
+                }
             });
-            lucide.createIcons();
+
+            // Filtering Animation
+            const items = document.querySelectorAll('.project-item');
+            gsap.to(items, { opacity: 0, scale: 0.9, duration: 0.2, onComplete: () => {
+                items.forEach(item => {
+                    if (item.classList.contains(cat)) {
+                        item.style.display = 'block';
+                        gsap.to(item, { opacity: 1, scale: 1, duration: 0.4 });
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            }});
         }
 
         function openModal(id) {
@@ -216,34 +266,34 @@
             const body = document.getElementById('modal-body');
             
             body.innerHTML = `
-                <div class="mono text-blue-500 text-xs mb-4 uppercase tracking-[0.3em]">Project Overview</div>
-                <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white uppercase">${repo.name.replace(/-/g, ' ')}</h2>
+                <div class="mono text-blue-500 text-xs mb-4 uppercase tracking-[0.3em]">Technical Deep Dive</div>
+                <h2 class="text-4xl md:text-5xl font-bold mb-8 text-white uppercase tracking-tighter">${repo.name.replace(/-/g, ' ')}</h2>
                 
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-10">
                     <div>
-                        <h4 class="text-[10px] mono text-gray-500 uppercase mb-4 tracking-widest">Description</h4>
+                        <h4 class="text-[10px] mono text-gray-500 uppercase mb-4 tracking-widest">About the project</h4>
                         <p class="text-gray-300 leading-relaxed text-lg">
-                            ${repo.description || 'This project focuses on building robust logic and efficient data structures. It is part of my exploration into high-performance software and autonomous behavior.'}
+                            ${repo.description || 'This implementation focuses on high-efficiency algorithms and clean system architecture. It demonstrates proficiency in modular design and robust error handling within its specific domain.'}
                         </p>
                     </div>
                     <div>
-                        <h4 class="text-[10px] mono text-gray-500 uppercase mb-4 tracking-widest">Details & Stack</h4>
-                        <div class="flex flex-wrap gap-2 mb-6">
-                            <span class="tech-badge">Python</span>
-                            <span class="tech-badge">Git Control</span>
-                            <span class="tech-badge">CI/CD</span>
+                        <h4 class="text-[10px] mono text-gray-500 uppercase mb-4 tracking-widest">Technologies & Stats</h4>
+                        <div class="flex flex-wrap gap-2 mb-8">
+                            <span class="tech-badge">${repo.language || 'Python'}</span>
+                            <span class="tech-badge">GitHub API</span>
+                            <span class="tech-badge">DevOps</span>
                             ${repo.topics ? repo.topics.map(t => `<span class="tech-badge">${t}</span>`).join('') : ''}
                         </div>
-                        <div class="flex gap-8 border-t border-white/5 pt-6">
-                            <div><div class="text-2xl font-bold text-white">${repo.stargazers_count}</div><div class="text-[10px] mono text-gray-600">STARS</div></div>
-                            <div><div class="text-2xl font-bold text-white">${repo.forks_count}</div><div class="text-[10px] mono text-gray-600">FORKS</div></div>
+                        <div class="flex gap-10 border-t border-white/5 pt-8">
+                            <div><div class="text-3xl font-bold text-white">${repo.stargazers_count}</div><div class="text-[10px] mono text-gray-600 tracking-widest">STARS</div></div>
+                            <div><div class="text-3xl font-bold text-white">${repo.forks_count}</div><div class="text-[10px] mono text-gray-600 tracking-widest">FORKS</div></div>
                         </div>
                     </div>
                 </div>
 
-                <div class="pt-8 border-t border-white/5 flex flex-wrap gap-4">
-                    <a href="${repo.html_url}" target="_blank" class="bg-white text-black px-10 py-4 rounded-2xl font-bold flex items-center gap-3 hover:bg-blue-600 hover:text-white transition duration-500">
-                        <i data-lucide="github"></i> OPEN REPOSITORY
+                <div class="pt-8 border-t border-white/5">
+                    <a href="${repo.html_url}" target="_blank" class="bg-white text-black px-12 py-5 rounded-2xl font-black inline-flex items-center gap-3 hover:bg-blue-600 hover:text-white transition duration-500">
+                        <i data-lucide="github"></i> VIEW ON GITHUB
                     </a>
                 </div>
             `;
@@ -263,7 +313,7 @@
             setTimeout(() => modal.style.display = 'none', 300);
         }
 
-        loadRepos();
+        window.onload = loadRepos;
     </script>
 </body>
 </html>
