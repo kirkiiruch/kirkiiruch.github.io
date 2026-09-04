@@ -6,51 +6,25 @@
     <title>Kyrylo Slyzhuk | AI & Robotics Engineer</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
     <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
 
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap');
 
-        :root {
-            --primary: #3b82f6;
-            --secondary: #9333ea;
-            --bg: #050505;
-        }
-
-        body {
-            background-color: var(--bg);
-            color: #fafafa;
-            font-family: 'Space Grotesk', sans-serif;
-            overflow-x: hidden;
-        }
-
+        :root { --primary: #3b82f6; --bg: #050505; }
+        body { background-color: var(--bg); color: #fafafa; font-family: 'Space Grotesk', sans-serif; overflow-x: hidden; }
         .mono { font-family: 'JetBrains Mono', monospace; }
 
-        #particles-js {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            z-index: 0;
-            pointer-events: none;
-        }
+        #particles-js { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
 
-        /* Общий стиль для всех карточек */
         .glass-card {
             background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1), border-color 0.4s ease;
-            position: relative;
-            overflow: hidden;
-            opacity: 1 !important; /* Гарантируем видимость */
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
         }
-
-        .glass-card:hover {
-            border-color: var(--primary);
-            transform: translateY(-5px);
-            background: rgba(255, 255, 255, 0.05);
-        }
+        .glass-card:hover { border-color: var(--primary); transform: translateY(-5px); background: rgba(59, 130, 246, 0.05); }
 
         .text-gradient {
             background: linear-gradient(to right, #3b82f6, #a855f7);
@@ -58,42 +32,35 @@
             -webkit-text-fill-color: transparent;
         }
 
-        .photo-container {
+        /* Modal Styles */
+        #project-modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 100;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .modal-content {
+            background: #0a0a0a;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            max-width: 700px;
+            width: 100%;
+            border-radius: 2rem;
             position: relative;
-            width: 320px;
-            height: 320px;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
-            overflow: hidden;
-            border: 2px solid var(--primary);
-            animation: morph 8s ease-in-out infinite;
-            box-shadow: 0 0 50px rgba(59, 130, 246, 0.2);
-        }
-
-        @keyframes morph {
-            0%, 100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 50% 50% 33% 67% / 55% 27% 73% 45%; }
-        }
-
-        .loader {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: #000; z-index: 100; display: flex; justify-content: center; align-items: center;
+            box-shadow: 0 25px 50px -12px rgba(59, 130, 246, 0.25);
         }
 
         .tech-badge {
-            background: rgba(255,255,255,0.07);
-            padding: 8px 16px;
-            border-radius: 12px;
+            background: rgba(255,255,255,0.05);
+            padding: 6px 12px;
+            border-radius: 8px;
+            font-size: 0.75rem;
             border: 1px solid rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: 0.3s;
-            color: #efefef;
-        }
-        .tech-badge:hover {
-            background: rgba(59, 130, 246, 0.2);
-            border-color: var(--primary);
-            transform: scale(1.05);
         }
 
         .no-scrollbar::-webkit-scrollbar { display: none; }
@@ -101,267 +68,215 @@
 </head>
 <body>
 
-    <div class="loader" id="loader">
-        <div class="mono text-blue-500 animate-pulse">SYSTEM_STARTUP_INITIALIZING...</div>
-    </div>
-
     <div id="particles-js"></div>
 
+    <!-- Navigation -->
     <nav class="fixed top-0 w-full z-50 px-6 py-6 flex justify-between items-center backdrop-blur-xl border-b border-white/5">
         <div class="mono font-bold text-lg tracking-tighter">
             <span class="text-blue-500">K</span>IRKII<span class="text-purple-500">R</span>UCH
         </div>
-        <div class="hidden md:flex gap-8 mono text-[11px] uppercase tracking-[0.2em] items-center">
-            <a href="#about" class="hover:text-blue-400 transition">About</a>
-            <a href="#stack" class="hover:text-blue-400 transition">Stack</a>
-            <a href="#experience" class="hover:text-blue-400 transition">Experience</a>
-            <a href="#projects" class="hover:text-blue-400 transition">Projects</a>
-            <a href="https://t.me/kirKiruch" target="_blank" class="flex items-center gap-2 bg-blue-500/10 px-4 py-2 rounded-full text-blue-400 hover:bg-blue-500 hover:text-white transition">
-                <i data-lucide="send" class="w-3 h-3"></i> Telegram
+        <div class="flex gap-4 items-center">
+            <a href="https://t.me/kirKiruch" target="_blank" class="bg-blue-500/10 px-4 py-2 rounded-full text-blue-400 hover:bg-blue-500 hover:text-white transition mono text-[10px] uppercase">
+                Contact Telegram
             </a>
         </div>
     </nav>
 
     <!-- Hero -->
-    <section id="about" class="min-h-screen flex items-center px-6 md:px-24 pt-20">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center w-full max-w-7xl mx-auto">
-            <div class="z-10">
-                <div class="mono text-blue-500 mb-6 flex items-center gap-3">
-                    <span class="h-px w-8 bg-blue-500"></span> 
-                    <span class="text-xs tracking-widest uppercase">Junior Software Engineer | AI & Robotics</span>
-                </div>
-                <h1 class="text-6xl md:text-8xl font-bold mb-6 leading-tight">KYRYLO <br><span class="text-gradient">SLYZHUK</span></h1>
+    <section class="min-h-screen flex items-center px-6 md:px-24 pt-20">
+        <div class="max-w-7xl mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+            <div>
+                <h1 class="text-6xl md:text-8xl font-bold mb-6">KYRYLO <br><span class="text-gradient">SLYZHUK</span></h1>
                 <p class="text-gray-400 text-lg mono mb-10 leading-relaxed max-w-xl">
-                    Python Developer based in Košice. <br>
-                    Specializing in <span class="text-white">ROS 2</span>, autonomous navigation, and intelligent backend systems.
+                    Python Developer & Robotics Engineer. <br>Building autonomous systems and scalable AI solutions.
                 </p>
-                <div class="flex flex-wrap gap-5">
-                    <a href="#projects" class="bg-blue-600 px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition shadow-lg shadow-blue-600/20 flex items-center gap-2">
-                        View Projects <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                    </a>
-                    <a href="https://t.me/kirKiruch" target="_blank" class="border border-white/10 px-8 py-4 rounded-2xl font-bold hover:bg-white/5 transition flex items-center gap-2">
-                        <i data-lucide="message-circle" class="w-4 h-4 text-blue-400"></i> Contact Me
-                    </a>
-                </div>
-            </div>
-            <div class="flex justify-center relative">
-                <div class="absolute inset-0 bg-blue-500/20 blur-[120px] rounded-full"></div>
-                <div class="photo-container">
-                    <img src="me.jpg" alt="Kyrylo Slyzhuk" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-1000">
+                <div class="flex gap-4">
+                    <a href="#projects" class="bg-blue-600 px-8 py-4 rounded-2xl font-bold hover:bg-blue-700 transition">Works</a>
+                    <a href="https://github.com/kirkiiruch" target="_blank" class="border border-white/10 px-8 py-4 rounded-2xl font-bold hover:bg-white/5 transition">GitHub</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Tech Stack -->
-    <section id="stack" class="py-32 px-6 md:px-24">
+    <!-- Certifications -->
+    <section class="py-24 px-6 md:px-24">
         <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-bold mb-16 flex items-center gap-4">
-                <i data-lucide="cpu" class="text-blue-500"></i> Technology Stack
+            <h2 class="text-3xl font-bold mb-12 flex items-center gap-3">
+                <i data-lucide="award" class="text-yellow-500"></i> My Certifications
             </h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="mono text-blue-400 text-sm mb-6 uppercase tracking-widest font-bold">Languages & Core</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <div class="tech-badge">Python</div>
-                        <div class="tech-badge">C++</div>
-                        <div class="tech-badge">JavaScript</div>
-                        <div class="tech-badge">PostgreSQL</div>
-                        <div class="tech-badge">Linux / Bash</div>
-                    </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                <div class="glass-card p-6 rounded-2xl">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Cisco_logo_blue_2016.svg" class="w-8 mb-4 opacity-50" alt="">
+                    <h4 class="font-bold text-sm">IoT & Digital Transformation</h4>
+                    <p class="text-[10px] text-gray-500 mono mt-2">Cisco Networking Academy</p>
                 </div>
-
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="mono text-purple-400 text-sm mb-6 uppercase tracking-widest font-bold">Robotics & AI</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <div class="tech-badge">ROS 2 / ROS</div>
-                        <div class="tech-badge">Webots</div>
-                        <div class="tech-badge">OpenCV</div>
-                        <div class="tech-badge">PyTorch</div>
-                        <div class="tech-badge">Scikit-learn</div>
-                    </div>
+                <!-- Google AI Series -->
+                <div class="glass-card p-6 rounded-2xl border-l-2 border-blue-500">
+                    <h4 class="font-bold text-sm">Professional Certificate "Google AI"</h4>
+                    <p class="text-[10px] text-gray-500 mono mt-2">Google | 2026</p>
                 </div>
-
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="mono text-green-400 text-sm mb-6 uppercase tracking-widest font-bold">Web & Tools</h3>
-                    <div class="flex flex-wrap gap-3">
-                        <div class="tech-badge">FastAPI</div>
-                        <div class="tech-badge">Flask</div>
-                        <div class="tech-badge">Docker</div>
-                        <div class="tech-badge">Git / GitHub</div>
-                        <div class="tech-badge">REST APIs</div>
-                    </div>
+                <div class="glass-card p-6 rounded-2xl border-l-2 border-purple-500">
+                    <h4 class="font-bold text-sm">AI for App Deployment</h4>
+                    <p class="text-[10px] text-gray-500 mono mt-2">Google | 2026</p>
                 </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Experience & Education -->
-    <section id="experience" class="py-32 px-6 md:px-24 bg-white/[0.01]">
-        <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 max-w-7xl mx-auto">
-            <div>
-                <h2 class="text-4xl font-bold mb-12 flex items-center gap-4">
-                    <i data-lucide="briefcase" class="text-blue-500"></i> Experience
-                </h2>
-                <div class="relative pl-12 space-y-12">
-                    <div class="absolute left-[20px] top-0 bottom-0 w-px bg-gradient-to-b from-blue-500 via-blue-500/20 to-transparent"></div>
-                    <div class="relative">
-                        <div class="absolute -left-[37px] top-0 w-3 h-3 rounded-full bg-blue-500 shadow-[0_0_15px_#3b82f6]"></div>
-                        <h3 class="text-xl font-bold text-white">Software & Network Engineer (R&D)</h3>
-                        <p class="text-blue-500 mono text-xs mb-4 uppercase tracking-tighter">TU Košice | Sep 2025 - Jun 2026</p>
-                        <p class="text-gray-400 text-sm leading-relaxed">Developed a hybrid cross-layer monitoring system for mobile robotics.</p>
-                    </div>
-                    <div class="relative">
-                        <div class="absolute -left-[37px] top-0 w-3 h-3 rounded-full bg-gray-700"></div>
-                        <h3 class="text-xl font-bold text-white">Python Developer Intern</h3>
-                        <p class="text-blue-500 mono text-xs mb-4 uppercase tracking-tighter">Prosperity Software | Feb 2025 - Jul 2025</p>
-                        <p class="text-gray-400 text-sm leading-relaxed">Backend development with Python, building and integrating REST APIs.</p>
-                    </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="font-bold text-sm">AI for App Building</h4>
+                    <p class="text-[10px] text-gray-500 mono mt-2">Google | 2026</p>
                 </div>
-            </div>
-
-            <div>
-                <h2 class="text-4xl font-bold mb-12 flex items-center gap-4">
-                    <i data-lucide="graduation-cap" class="text-purple-500"></i> Education
-                </h2>
-                <div class="glass-card p-8 rounded-3xl mb-8">
-                    <div class="flex justify-between items-start mb-4">
-                        <h3 class="text-xl font-bold text-white">Bachelor in IT</h3>
-                        <span class="text-[10px] mono bg-purple-500/20 text-purple-400 px-3 py-1 rounded-full border border-purple-500/20">CURRENT</span>
-                    </div>
-                    <p class="text-purple-400 mono text-sm mb-4">Technical University of Košice | 2022 - 2026</p>
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="font-bold text-sm">AI for Brainstorming</h4>
+                    <p class="text-[10px] text-gray-500 mono mt-2">Google | 2026</p>
                 </div>
-
-                <h3 class="text-2xl font-bold mb-6 flex items-center gap-2">
-                    <i data-lucide="award" class="text-yellow-500 w-5"></i> Certifications
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <div class="glass-card p-4 rounded-xl text-[11px] mono border-l-2 border-yellow-500">
-                        "Google AI Essentials"
-                    </div>
-                    <div class="glass-card p-4 rounded-xl text-[11px] mono border-l-2 border-blue-500">
-                        Cisco IoT & Digital Transformation
-                    </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="font-bold text-sm">AI for Research & Insights</h4>
+                    <p class="text-[10px] text-gray-500 mono mt-2">Google | 2026</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl border-l-2 border-green-500">
+                    <h4 class="font-bold text-sm">AI for Data Analysis</h4>
+                    <p class="text-[10px] text-gray-500 mono mt-2">Google | 2026</p>
+                </div>
+                <div class="glass-card p-6 rounded-2xl">
+                    <h4 class="font-bold text-sm">AI Fundamentals</h4>
+                    <p class="text-[10px] text-gray-500 mono mt-2">Google | 2026</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Projects Section -->
-    <section id="projects" class="py-32 px-6 md:px-24 relative z-10">
-        <div class="flex flex-col md:flex-row justify-between items-baseline mb-20 max-w-7xl mx-auto">
-            <div>
-                <h2 class="text-5xl font-bold mb-4">WORKS</h2>
-                <div class="flex items-center gap-2 mono text-xs text-gray-500">
-                    <span class="relative flex h-2 w-2">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
-                    </span>
-                    LIVE FROM GITHUB API
+    <!-- Projects -->
+    <section id="projects" class="py-24 px-6 md:px-24">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex justify-between items-end mb-16">
+                <h2 class="text-5xl font-bold">PROJECTS</h2>
+                <div class="flex gap-2 mono text-[10px]">
+                    <button onclick="filterProjects('all')" class="px-4 py-2 border border-white/10 rounded-full hover:bg-white hover:text-black transition uppercase">All</button>
+                    <button onclick="filterProjects('robotics')" class="px-4 py-2 border border-white/10 rounded-full hover:bg-white hover:text-black transition uppercase">Robotics</button>
                 </div>
             </div>
-            <div class="flex gap-2 mt-8 md:mt-0 overflow-x-auto pb-4 w-full md:w-auto no-scrollbar">
-                <button onclick="filterProjects('all')" class="filter-btn mono text-[10px] border border-white/10 px-6 py-2 rounded-full hover:bg-white hover:text-black transition uppercase">All</button>
-                <button onclick="filterProjects('robotics')" class="filter-btn mono text-[10px] border border-white/10 px-6 py-2 rounded-full hover:bg-white hover:text-black transition uppercase">Robotics</button>
-                <button onclick="filterProjects('ml')" class="filter-btn mono text-[10px] border border-white/10 px-6 py-2 rounded-full hover:bg-white hover:text-black transition uppercase">AI/ML</button>
-                <button onclick="filterProjects('web')" class="filter-btn mono text-[10px] border border-white/10 px-6 py-2 rounded-full hover:bg-white hover:text-black transition uppercase">Web</button>
-            </div>
-        </div>
-
-        <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-7xl mx-auto">
-            <!-- Сюда подгружаются проекты -->
+            <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </div>
     </section>
 
-    <footer class="py-32 px-6 text-center border-t border-white/5 bg-black/50">
-        <div class="flex flex-wrap justify-center gap-8 md:gap-16 mb-12">
-            <a href="mailto:kyrylo.slyzhuk@gmail.com" class="text-2xl font-bold hover:text-blue-500 transition">EMAIL</a>
-            <a href="https://t.me/kirKiruch" target="_blank" class="text-2xl font-bold hover:text-blue-400 transition">TELEGRAM</a>
+    <!-- Project Modal -->
+    <div id="project-modal">
+        <div class="modal-content p-8 md:p-12 scale-90 opacity-0 transform transition-all duration-300">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-500 hover:text-white">
+                <i data-lucide="x"></i>
+            </button>
+            <div id="modal-body">
+                <!-- Content injected by JS -->
+            </div>
         </div>
-        <p class="mono text-[10px] text-gray-700 uppercase tracking-widest">© 2024 Kyrylo Slyzhuk</p>
-    </footer>
+    </div>
 
     <script>
+        // Particles Init
         particlesJS("particles-js", {
             "particles": {
-                "number": { "value": 40, "density": { "enable": true, "value_area": 800 } },
+                "number": { "value": 40 },
                 "color": { "value": "#3b82f6" },
-                "shape": { "type": "circle" },
-                "opacity": { "value": 0.1 },
+                "opacity": { "value": 0.2 },
                 "size": { "value": 2 },
-                "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.05, "width": 1 },
-                "move": { "enable": true, "speed": 0.8, "out_mode": "out" }
+                "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.1 }
             }
         });
 
-        const tags = {
-            'webots': 'robotics', 'bug2': 'robotics', 'monitoring': 'robotics', 'ros': 'robotics',
-            'cnn': 'ml', 'xgboost': 'ml', 'classification': 'ml', 'data': 'ml',
-            'hotel': 'web', 'networking': 'web', 'tiktok': 'web', 'api': 'web'
-        };
+        const repoData = {}; // Store full data for modal
 
         async function loadRepos() {
-            try {
-                const res = await fetch(`https://api.github.com/users/kirkiiruch/repos?sort=updated&per_page=12`);
-                const repos = await res.json();
-                const grid = document.getElementById('project-grid');
-                grid.innerHTML = '';
+            const res = await fetch(`https://api.github.com/users/kirkiiruch/repos?sort=updated&per_page=15`);
+            const repos = await res.json();
+            const grid = document.getElementById('project-grid');
+            
+            repos.forEach(repo => {
+                if (repo.fork) return;
+                repoData[repo.id] = repo;
 
-                repos.forEach(repo => {
-                    if (repo.fork) return;
-                    let category = 'all';
-                    for (let key in tags) {
-                        if (repo.name.toLowerCase().includes(key)) category += ` ${tags[key]}`;
-                    }
+                const card = document.createElement('div');
+                card.className = `glass-card p-8 rounded-[2rem] cursor-pointer project-item all ${repo.name.includes('ros') ? 'robotics' : ''}`;
+                card.onclick = () => openModal(repo.id);
+                card.innerHTML = `
+                    <div class="flex justify-between mb-6">
+                        <div class="bg-blue-500/10 p-2 rounded-lg"><i data-lucide="folder" class="text-blue-500 w-5 h-5"></i></div>
+                        <i data-lucide="arrow-up-right" class="text-gray-600"></i>
+                    </div>
+                    <h4 class="text-xl font-bold mb-3 mono text-white uppercase">${repo.name.replace(/-/g, ' ')}</h4>
+                    <p class="text-gray-400 text-xs line-clamp-2">${repo.description || 'Professional implementation of high-performance system.'}</p>
+                    <div class="mt-6 flex gap-2">
+                        <span class="text-[9px] mono px-2 py-1 bg-white/5 rounded border border-white/10">${repo.language || 'Python'}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+            lucide.createIcons();
+        }
 
-                    const card = document.createElement('div');
-                    card.className = `glass-card p-10 rounded-[2rem] flex flex-col justify-between min-h-[320px] project-item ${category}`;
-                    card.innerHTML = `
-                        <div>
-                            <div class="flex justify-between items-start mb-8">
-                                <div class="bg-blue-500/10 p-3 rounded-2xl"><i data-lucide="folder" class="text-blue-500 w-6 h-6"></i></div>
-                                <a href="${repo.html_url}" target="_blank" class="text-gray-500 hover:text-white transition"><i data-lucide="github" class="w-5 h-5"></i></a>
-                            </div>
-                            <h4 class="text-xl font-bold mb-4 mono text-white">${repo.name.replace(/-/g, ' ').toUpperCase()}</h4>
-                            <p class="text-gray-400 text-xs leading-relaxed line-clamp-3">${repo.description || 'System implementation.'}</p>
-                        </div>
-                        <div class="flex justify-between items-center pt-6 border-t border-white/5">
-                            <span class="text-[9px] mono bg-white/5 text-gray-300 px-3 py-1.5 rounded-lg border border-white/10 uppercase">${repo.language || 'Code'}</span>
-                            <span class="text-[10px] flex items-center gap-1.5 mono"><i data-lucide="star" class="w-3 h-3 text-yellow-500"></i> ${repo.stargazers_count}</span>
-                        </div>
-                    `;
-                    grid.appendChild(card);
-                });
-                lucide.createIcons();
+        function openModal(id) {
+            const repo = repoData[id];
+            const modal = document.getElementById('project-modal');
+            const body = document.getElementById('modal-body');
+            const content = modal.querySelector('.modal-content');
+
+            body.innerHTML = `
+                <div class="mono text-blue-500 text-xs mb-4 uppercase tracking-widest">Project Details</div>
+                <h2 class="text-4xl font-bold mb-6 text-white">${repo.name.replace(/-/g, ' ').toUpperCase()}</h2>
                 
-                // Анимируем ТОЛЬКО карточки проектов
-                gsap.from("#project-grid .project-item", {
-                    y: 30, opacity: 0, duration: 0.8, stagger: 0.1, ease: "power2.out"
-                });
-            } catch (e) { console.error(e); }
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                    <div>
+                        <h4 class="text-xs mono uppercase text-gray-500 mb-2">Description</h4>
+                        <p class="text-gray-300 leading-relaxed">
+                            ${repo.description || 'This project focuses on advanced implementation techniques. It involves structured architecture and efficient algorithms to solve complex tasks within the environment.'}
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-xs mono uppercase text-gray-500 mb-2">Tech Stack</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span class="tech-badge">${repo.language || 'Python'}</span>
+                            <span class="tech-badge">Git</span>
+                            <span class="tech-badge">System Design</span>
+                            ${repo.topics ? repo.topics.map(t => `<span class="tech-badge">${t}</span>`).join('') : ''}
+                        </div>
+                    </div>
+                </div>
+
+                <div class="flex items-center justify-between pt-8 border-t border-white/5">
+                    <div class="flex gap-6">
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">${repo.stargazers_count}</div>
+                            <div class="text-[10px] mono text-gray-500">STARS</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-xl font-bold text-white">${repo.forks_count}</div>
+                            <div class="text-[10px] mono text-gray-500">FORKS</div>
+                        </div>
+                    </div>
+                    <a href="${repo.html_url}" target="_blank" class="bg-white text-black px-8 py-3 rounded-xl font-bold flex items-center gap-2 hover:bg-blue-500 hover:text-white transition">
+                        <i data-lucide="github" class="w-4 h-4"></i> Source Code
+                    </a>
+                </div>
+            `;
+
+            modal.style.display = 'flex';
+            setTimeout(() => {
+                content.classList.remove('scale-90', 'opacity-0');
+            }, 10);
+            lucide.createIcons();
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('project-modal');
+            const content = modal.querySelector('.modal-content');
+            content.classList.add('scale-90', 'opacity-0');
+            setTimeout(() => { modal.style.display = 'none'; }, 300);
         }
 
         function filterProjects(cat) {
-            const cards = document.querySelectorAll('.project-item'); // Только проектные карточки!
-            gsap.to(cards, { opacity: 0, scale: 0.95, duration: 0.3, onComplete: () => {
-                cards.forEach(card => {
-                    if (cat === 'all' || card.classList.contains(cat)) {
-                        card.style.display = 'flex';
-                        gsap.to(card, { opacity: 1, scale: 1, duration: 0.5 });
-                    } else {
-                        card.style.display = 'none';
-                    }
-                });
-            }});
+            document.querySelectorAll('.project-item').forEach(card => {
+                card.style.display = (cat === 'all' || card.classList.contains(cat)) ? 'block' : 'none';
+            });
         }
 
-        window.addEventListener('load', () => {
-            gsap.to("#loader", { opacity: 0, duration: 1, onComplete: () => {
-                document.getElementById('loader').style.display = 'none';
-            }});
-            loadRepos();
-        });
+        loadRepos();
     </script>
 </body>
 </html>
