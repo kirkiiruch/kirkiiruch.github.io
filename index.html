@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kyrylo Slyzhuk | Robotics & AI Engineer</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;500;700&family=JetBrains+Mono&display=swap');
+
+        :root {
+            --primary: #3b82f6;
+            --bg: #030303;
+        }
+
+        body {
+            background-color: var(--bg);
+            color: #fafafa;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow-x: hidden;
+        }
+
+        .mono { font-family: 'JetBrains Mono', monospace; }
+
+        #particles-js {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .glass-card {
+            background: rgba(15, 15, 15, 0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            border-color: var(--primary);
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.15);
+            transform: translateY(-10px) scale(1.02);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #3b82f6, #9333ea);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0; width: 0; height: 1px;
+            background: var(--primary);
+            transition: width 0.3s;
+        }
+
+        .nav-link:hover::after { width: 100%; }
+
+        .loader {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: #000;
+            z-index: 100;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="loader" id="loader">
+        <div class="mono text-blue-500 animate-pulse text-xl">System.init();</div>
+    </div>
+
+    <div id="particles-js"></div>
+
+    <!-- Header -->
+    <nav class="fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center backdrop-blur-sm border-b border-white/5">
+        <div class="mono font-bold text-lg tracking-widest">
+            <span class="text-blue-500 font-black">K</span>IRKII<span class="text-purple-500 font-black">R</span>UCH
+        </div>
+        <div class="hidden md:flex gap-10 mono text-xs uppercase tracking-[0.2em]">
+            <a href="#about" class="nav-link">About</a>
+            <a href="#projects" class="nav-link">Architecture</a>
+            <a href="#contact" class="nav-link">Connect</a>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <section class="relative min-h-screen flex items-center px-6 md:px-24">
+        <div class="z-10 max-w-5xl">
+            <div class="mono text-blue-500 mb-6 flex items-center gap-3">
+                <span class="h-px w-8 bg-blue-500"></span> 
+                <span>Based in Europe / Python Engineer</span>
+            </div>
+            <h1 class="text-7xl md:text-[120px] font-bold leading-[0.9] mb-8">
+                ROBOTICS <br>
+                <span class="text-gradient">& INTELLIGENCE</span>
+            </h1>
+            <p class="text-gray-400 text-lg md:text-xl max-w-xl mono leading-relaxed">
+                Developing autonomous systems and machine learning models. 
+                Focusing on Python, Webots, and Deep Learning.
+            </p>
+        </div>
+    </section>
+
+    <!-- Projects -->
+    <section id="projects" class="py-32 px-6 md:px-24 relative z-10">
+        <div class="flex flex-col md:flex-row justify-between items-baseline mb-20">
+            <h2 class="text-5xl font-bold">REPOSITORIES</h2>
+            <div class="flex gap-4 mt-6 md:mt-0 overflow-x-auto pb-4">
+                <button onclick="filterProjects('all')" class="mono text-xs border border-white/10 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">ALL_SYSTEMS</button>
+                <button onclick="filterProjects('robotics')" class="mono text-xs border border-white/10 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">ROBOTICS</button>
+                <button onclick="filterProjects('ml')" class="mono text-xs border border-white/10 px-6 py-2 rounded-full hover:bg-white hover:text-black transition">AI/ML</button>
+            </div>
+        </div>
+
+        <div id="project-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Projects injected by JS -->
+        </div>
+    </section>
+
+    <!-- Footer / Contact -->
+    <section id="contact" class="py-32 px-6 text-center border-t border-white/5 bg-black/40">
+        <h3 class="text-gray-500 mono mb-4">// Ready for collaboration</h3>
+        <a href="mailto:your-email@example.com" class="text-5xl md:text-7xl font-bold hover:text-blue-500 transition duration-500">
+            START_PROJECT
+        </a>
+        <div class="flex justify-center gap-10 mt-20 mono text-sm text-gray-600">
+            <a href="https://github.com/kirkiiruch" class="hover:text-white">GITHUB</a>
+            <a href="#" class="hover:text-white">LINKEDIN</a>
+            <a href="#" class="hover:text-white">TELEGRAM</a>
+        </div>
+    </section>
+
+    <script>
+        // Particles.js Config
+        particlesJS("particles-js", {
+            "particles": {
+                "number": { "value": 80, "density": { "enable": true, "value_area": 800 } },
+                "color": { "value": "#3b82f6" },
+                "shape": { "type": "circle" },
+                "opacity": { "value": 0.2 },
+                "size": { "value": 2 },
+                "line_linked": { "enable": true, "distance": 150, "color": "#3b82f6", "opacity": 0.1, "width": 1 },
+                "move": { "enable": true, "speed": 1, "direction": "none", "random": false, "straight": false, "out_mode": "out", "bounce": false }
+            },
+            "interactivity": {
+                "detect_on": "canvas",
+                "events": { "onhover": { "enable": true, "mode": "grab" }, "onclick": { "enable": true, "mode": "push" } },
+                "modes": { "grab": { "distance": 140, "line_linked": { "opacity": 1 } } }
+            }
+        });
+
+        // GSAP Animations
+        window.addEventListener('load', () => {
+            gsap.to("#loader", { opacity: 0, duration: 1, delay: 0.5, onComplete: () => {
+                document.getElementById('loader').style.display = 'none';
+            }});
+            
+            gsap.from("h1", { y: 100, opacity: 0, duration: 1.5, delay: 1, ease: "power4.out" });
+        });
+
+        // GitHub Logic
+        const username = 'kirkiiruch';
+        const projectGrid = document.getElementById('project-grid');
+
+        const tags = {
+            'Webots-Simulation': 'robotics',
+            'Image-Classification': 'ml',
+            'CNN': 'ml',
+            'XGBoost': 'ml',
+            'Bug2': 'robotics',
+            'Docker': 'backend'
+        };
+
+        async function loadRepos() {
+            try {
+                const res = await fetch(`https://api.github.com/users/${username}/repos?sort=updated`);
+                const repos = await res.json();
+                
+                projectGrid.innerHTML = '';
+                repos.forEach(repo => {
+                    if (repo.fork) return;
+                    
+                    let category = 'all';
+                    for (let key in tags) {
+                        if (repo.name.includes(key)) category += ` ${tags[key]}`;
+                    }
+
+                    const card = document.createElement('div');
+                    card.className = `glass-card p-10 rounded-3xl flex flex-col justify-between h-[350px] ${category}`;
+                    card.innerHTML = `
+                        <div>
+                            <div class="flex justify-between mb-8">
+                                <i data-lucide="cpu" class="text-blue-500"></i>
+                                <a href="${repo.html_url}" target="_blank" class="text-gray-500 hover:text-white"><i data-lucide="external-link"></i></a>
+                            </div>
+                            <h4 class="text-2xl font-bold mb-4 tracking-tight">${repo.name.replace(/-/g, ' ')}</h4>
+                            <p class="text-gray-500 mono text-sm line-clamp-3">${repo.description || 'System architecture and engineering implementation.'}</p>
+                        </div>
+                        <div class="flex justify-between items-center mt-6">
+                            <span class="text-[10px] mono bg-blue-500/10 text-blue-400 px-3 py-1 rounded-full border border-blue-500/20">${repo.language || 'Python'}</span>
+                            <span class="text-[10px] mono text-gray-600 italic">v1.0.stable</span>
+                        </div>
+                    `;
+                    projectGrid.appendChild(card);
+                });
+                lucide.createIcons();
+            } catch (e) {
+                console.error("Failed to load repos");
+            }
+        }
+
+        function filterProjects(cat) {
+            const cards = document.querySelectorAll('.glass-card');
+            cards.forEach(card => {
+                if (cat === 'all' || card.classList.contains(cat)) {
+                    gsap.to(card, { opacity: 1, scale: 1, duration: 0.5, display: 'flex' });
+                } else {
+                    gsap.to(card, { opacity: 0, scale: 0.9, duration: 0.5, display: 'none' });
+                }
+            });
+        }
+
+        loadRepos();
+    </script>
+</body>
+</html>
